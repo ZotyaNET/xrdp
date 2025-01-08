@@ -8,7 +8,7 @@ resources:
     region: europe-west4
     zone: europe-west4-b
     vmtype: e2-standard-8
-    linuxType: ubuntu-2204-lts
+    linuxType: ubuntu-minimal-2204-jammy-v20241218
     diskSizeGb: 20
     startup-script: |
         #!/bin/bash
