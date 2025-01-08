@@ -1,14 +1,14 @@
 imports:
 - path: vm.jinja
 resources:
-- name: deploy-btcpay-vm-with-btcpay-server
+- name: deploy-rdp44devcom-vm
   type: vm.jinja
   properties:
     ############  EDIT PROPERTY START HERE ##############
     region: europe-west4
     zone: europe-west4-b
     vmtype: e2-standard-8
-    linuxType: ubuntu-minimal-2204-jammy-v20241218
+    linuxType: ubuntu-minimal-2410-oracular-amd64-v20241115
     diskSizeGb: 20
     startup-script: |
         #!/bin/bash
@@ -51,8 +51,8 @@ resources:
         BTCPAY_HOST_SSHKEYFILE=/root/.ssh/id_rsa_btcpay
         # Clone btcpayserver-docker
         git clone $BTCPAY_DOCKER_REPO
-        cd btcpayserver-docker
+        cd build
         git checkout $BTCPAY_DOCKER_REPO_BRANCH
-        . ./btcpay-setup.sh -i
+        . .ubuntu-rdp.sh -i
         [ -x "$(command -v /etc/init.d/sshd)" ] && nohup /etc/init.d/sshd restart &
         [ -x "$(command -v /etc/init.d/ssh)" ] && nohup /etc/init.d/ssh restart &
